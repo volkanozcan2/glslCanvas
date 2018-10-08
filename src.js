@@ -1,8 +1,6 @@
 $(document).ready(function() {
 
     const shader = `
-// Author: uvefan Guuvavson
-// Title: Worley noise 2x2x2
 
 #ifdef GL_ES
 precision lowp float;

@@ -1,7 +1,5 @@
 $(document).ready(function() {
-
     const shader = `
-
 #ifdef GL_ES
 precision lowp float;
 #endif

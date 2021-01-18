@@ -1,6 +1,6 @@
-(function(global, factory) {
+(function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : (global.GlslCanvas = factory());
-}(this, (function() {
+}(this, (function () {
     'use strict';
 
     var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -9,8 +9,8 @@
         return module = {
             exports: {}
         },
-        fn(module, module.exports),
-        module.exports;
+            fn(module, module.exports),
+            module.exports;
     }
 
     var win;
@@ -34,25 +34,25 @@
     function isFunction(fn) {
         var string = toString.call(fn);
         return string === '[object Function]' || (typeof fn === 'function' && string !== '[object RegExp]') || (typeof window !== 'undefined' && // IE8 and below
-        (fn === window.setTimeout || fn === window.alert || fn === window.confirm || fn === window.prompt))
+            (fn === window.setTimeout || fn === window.alert || fn === window.confirm || fn === window.prompt))
     }
 
-    var trim_1 = createCommonjsModule(function(module, exports) {
+    var trim_1 = createCommonjsModule(function (module, exports) {
         exports = module.exports = trim;
 
         function trim(str) {
             return str.replace(/^\s*|\s*$/g, '');
         }
 
-        exports.left = function(str) {
+        exports.left = function (str) {
             return str.replace(/^\s*/, '');
         }
-        ;
+            ;
 
-        exports.right = function(str) {
+        exports.right = function (str) {
             return str.replace(/\s*$/, '');
         }
-        ;
+            ;
     });
 
     var forEach_1 = forEach;
@@ -100,20 +100,20 @@
         }
     }
 
-    var isArray = function(arg) {
+    var isArray = function (arg) {
         return Object.prototype.toString.call(arg) === '[object Array]';
     };
 
-    var parseHeaders = function(headers) {
+    var parseHeaders = function (headers) {
         if (!headers)
             return {}
 
         var result = {};
 
-        forEach_1(trim_1(headers).split('\n'), function(row) {
+        forEach_1(trim_1(headers).split('\n'), function (row) {
             var index = row.indexOf(':')
-              , key = trim_1(row.slice(0, index)).toLowerCase()
-              , value = trim_1(row.slice(index + 1));
+                , key = trim_1(row.slice(0, index)).toLowerCase()
+                , value = trim_1(row.slice(index + 1));
 
             if (typeof (result[key]) === 'undefined') {
                 result[key] = value;
@@ -153,15 +153,15 @@
     // Allow use of default import syntax in TypeScript
     var default_1 = createXHR;
     createXHR.XMLHttpRequest = window_1.XMLHttpRequest || noop;
-    createXHR.XDomainRequest = "withCredentials"in (new createXHR.XMLHttpRequest()) ? createXHR.XMLHttpRequest : window_1.XDomainRequest;
+    createXHR.XDomainRequest = "withCredentials" in (new createXHR.XMLHttpRequest()) ? createXHR.XMLHttpRequest : window_1.XDomainRequest;
 
-    forEachArray(["get", "put", "post", "patch", "head", "delete"], function(method) {
-        createXHR[method === "delete" ? "del" : method] = function(uri, options, callback) {
+    forEachArray(["get", "put", "post", "patch", "head", "delete"], function (method) {
+        createXHR[method === "delete" ? "del" : method] = function (uri, options, callback) {
             options = initParams(uri, options, callback);
             options.method = method.toUpperCase();
             return _createXHR(options)
         }
-        ;
+            ;
     });
 
     function forEachArray(array, iterator) {
@@ -235,7 +235,7 @@
             if (isJson) {
                 try {
                     body = JSON.parse(body);
-                } catch (e) {}
+                } catch (e) { }
             }
 
             return body
@@ -312,7 +312,7 @@
             rawRequest: xhr
         };
 
-        if ("json"in options && options.json !== false) {
+        if ("json" in options && options.json !== false) {
             isJson = true;
             headers["accept"] || headers["Accept"] || (headers["Accept"] = "application/json");
             //Don't override existing accept header declared by user
@@ -327,13 +327,13 @@
         xhr.onload = loadFunc;
         xhr.onerror = errorFunc;
         // IE9 must have onprogress be set to a unique function.
-        xhr.onprogress = function() {// IE must die
+        xhr.onprogress = function () {// IE must die
         }
-        ;
-        xhr.onabort = function() {
+            ;
+        xhr.onabort = function () {
             aborted = true;
         }
-        ;
+            ;
         xhr.ontimeout = errorFunc;
         xhr.open(method, uri, !sync, options.username, options.password);
         //has to be after open
@@ -344,7 +344,7 @@
         // not setting timeout on the xhr object, because of old webkits etc. not handling that correctly
         // both npm's request and jquery 1.x use this kind of timeout, so this is being consistent
         if (!sync && options.timeout > 0) {
-            timeoutTimer = setTimeout(function() {
+            timeoutTimer = setTimeout(function () {
                 if (aborted)
                     return
                 aborted = true;
@@ -366,11 +366,11 @@
             throw new Error("Headers cannot be set on an XDomainRequest object")
         }
 
-        if ("responseType"in options) {
+        if ("responseType" in options) {
             xhr.responseType = options.responseType;
         }
 
-        if ("beforeSend"in options && typeof options.beforeSend === "function") {
+        if ("beforeSend" in options && typeof options.beforeSend === "function") {
             options.beforeSend(xhr);
         }
 
@@ -394,24 +394,24 @@
             if (xhr.responseType === "" && !firefoxBugTakenEffect) {
                 return xhr.responseXML
             }
-        } catch (e) {}
+        } catch (e) { }
 
         return null
     }
 
-    function noop() {}
+    function noop() { }
 
     xhr.default = default_1;
 
-    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+    var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
         return typeof obj;
     }
-    : function(obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }
-    ;
+        : function (obj) {
+            return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        }
+        ;
 
-    var asyncGenerator = function() {
+    var asyncGenerator = function () {
         function AwaitValue(value) {
             this.value = value;
         }
@@ -420,7 +420,7 @@
             var front, back;
 
             function send(key, arg) {
-                return new Promise(function(resolve, reject) {
+                return new Promise(function (resolve, reject) {
                     var request = {
                         key: key,
                         arg: arg,
@@ -445,9 +445,9 @@
                     var value = result.value;
 
                     if (value instanceof AwaitValue) {
-                        Promise.resolve(value.value).then(function(arg) {
+                        Promise.resolve(value.value).then(function (arg) {
                             resume("next", arg);
-                        }, function(arg) {
+                        }, function (arg) {
                             resume("throw", arg);
                         });
                     } else {
@@ -460,23 +460,23 @@
 
             function settle(type, value) {
                 switch (type) {
-                case "return":
-                    front.resolve({
-                        value: value,
-                        done: true
-                    });
-                    break;
+                    case "return":
+                        front.resolve({
+                            value: value,
+                            done: true
+                        });
+                        break;
 
-                case "throw":
-                    front.reject(value);
-                    break;
+                    case "throw":
+                        front.reject(value);
+                        break;
 
-                default:
-                    front.resolve({
-                        value: value,
-                        done: false
-                    });
-                    break;
+                    default:
+                        front.resolve({
+                            value: value,
+                            done: false
+                        });
+                        break;
                 }
 
                 front = front.next;
@@ -496,69 +496,69 @@
         }
 
         if (typeof Symbol === "function" && Symbol.asyncIterator) {
-            AsyncGenerator.prototype[Symbol.asyncIterator] = function() {
+            AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
                 return this;
             }
-            ;
+                ;
         }
 
-        AsyncGenerator.prototype.next = function(arg) {
+        AsyncGenerator.prototype.next = function (arg) {
             return this._invoke("next", arg);
         }
-        ;
+            ;
 
-        AsyncGenerator.prototype.throw = function(arg) {
+        AsyncGenerator.prototype.throw = function (arg) {
             return this._invoke("throw", arg);
         }
-        ;
+            ;
 
-        AsyncGenerator.prototype.return = function(arg) {
+        AsyncGenerator.prototype.return = function (arg) {
             return this._invoke("return", arg);
         }
-        ;
+            ;
 
         return {
-            wrap: function(fn) {
-                return function() {
+            wrap: function (fn) {
+                return function () {
                     return new AsyncGenerator(fn.apply(this, arguments));
                 }
-                ;
+                    ;
             },
-            await: function(value) {
+            await: function (value) {
                 return new AwaitValue(value);
             }
         };
     }();
 
-    var classCallCheck = function(instance, Constructor) {
+    var classCallCheck = function (instance, Constructor) {
         if (!(instance instanceof Constructor)) {
             throw new TypeError("Cannot call a class as a function");
         }
     };
 
-    var createClass = function() {
+    var createClass = function () {
         function defineProperties(target, props) {
             for (var i = 0; i < props.length; i++) {
                 var descriptor = props[i];
                 descriptor.enumerable = descriptor.enumerable || false;
                 descriptor.configurable = true;
-                if ("value"in descriptor)
+                if ("value" in descriptor)
                     descriptor.writable = true;
                 Object.defineProperty(target, descriptor.key, descriptor);
             }
         }
 
-        return function(Constructor, protoProps, staticProps) {
+        return function (Constructor, protoProps, staticProps) {
             if (protoProps)
                 defineProperties(Constructor.prototype, protoProps);
             if (staticProps)
                 defineProperties(Constructor, staticProps);
             return Constructor;
         }
-        ;
+            ;
     }();
 
-    var toConsumableArray = function(arr) {
+    var toConsumableArray = function (arr) {
         if (Array.isArray(arr)) {
             for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++)
                 arr2[i] = arr[i];
@@ -997,7 +997,7 @@
     }
 
     // Texture management
-    var Texture = function() {
+    var Texture = function () {
         function Texture(gl, name) {
             var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
             classCallCheck(this, Texture);
@@ -1093,7 +1093,7 @@
                 this.source = this.url;
                 this.sourceType = 'url';
 
-                this.loading = new Promise(function(resolve, reject) {
+                this.loading = new Promise(function (resolve, reject) {
                     var ext = url.split('.').pop().toLowerCase();
                     var isVideo = ext === 'ogv' || ext === 'webm' || ext === 'mp4';
 
@@ -1109,7 +1109,7 @@
                         element = new Image();
                     }
 
-                    element.onload = function() {
+                    element.onload = function () {
                         try {
                             _this.setElement(element, options);
                         } catch (e) {
@@ -1117,13 +1117,13 @@
                         }
                         resolve(_this);
                     }
-                    ;
-                    element.onerror = function(e) {
+                        ;
+                    element.onerror = function (e) {
                         // Warn and resolve on error
                         console.log('Texture \'' + _this.name + '\': failed to load url: \'' + _this.source + '\'', e, options);
                         resolve(_this);
                     }
-                    ;
+                        ;
 
                     // Safari has a bug loading data-URL elements with CORS enabled, so it must be disabled in that case
                     // https://bugs.webkit.org/show_bug.cgi?id=123978
@@ -1177,12 +1177,12 @@
                     this.sourceType = 'element';
 
                     if (element instanceof HTMLVideoElement) {
-                        element.addEventListener('canplaythrough', function() {
-                            _this2.intervalID = setInterval(function() {
+                        element.addEventListener('canplaythrough', function () {
+                            _this2.intervalID = setInterval(function () {
                                 _this2.update(options);
                             }, 15);
                         }, true);
-                        element.addEventListener('ended', function() {
+                        element.addEventListener('ended', function () {
                             element.currentTime = 0;
                             element.play();
                         }, true);
@@ -1294,10 +1294,10 @@
 
     // Report max texture size for a GL context
 
-    Texture.getMaxTextureSize = function(gl) {
+    Texture.getMaxTextureSize = function (gl) {
         return gl.getParameter(gl.MAX_TEXTURE_SIZE);
     }
-    ;
+        ;
 
     // Global set of textures, by name
     Texture.activeUnit = -1;
@@ -1325,7 +1325,7 @@
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     */
 
-    var GlslCanvas = function() {
+    var GlslCanvas = function () {
         function GlslCanvas(canvas, contextOptions, options) {
             var _this = this;
 
@@ -1374,7 +1374,7 @@
                 this.fragmentString = canvas.getAttribute('data-fragment');
             } else if (canvas.hasAttribute('data-fragment-url')) {
                 var source = canvas.getAttribute('data-fragment-url');
-                xhr.get(source, function(error, response, body) {
+                xhr.get(source, function (error, response, body) {
                     _this.load(body, _this.vertexString);
                 });
             }
@@ -1384,7 +1384,7 @@
                 this.vertexString = canvas.getAttribute('data-vertex');
             } else if (canvas.hasAttribute('data-vertex-url')) {
                 var _source = canvas.getAttribute('data-vertex-url');
-                xhr.get(_source, function(error, response, body) {
+                xhr.get(_source, function (error, response, body) {
                     _this.load(_this.fragmentString, body);
                 });
             }
@@ -1423,7 +1423,7 @@
                 x: 0,
                 y: 0
             };
-            document.addEventListener('mousemove', function(e) {
+            document.addEventListener('mousemove', function (e) {
                 mouse.x = e.clientX || e.pageX;
                 mouse.y = e.clientY || e.pageY;
             }, false);
@@ -1631,13 +1631,13 @@
                 if (this.textures[name]) {
                     if (this.textures[name]) {
                         this.textures[name].load(options);
-                        this.textures[name].on('loaded', function(args) {
+                        this.textures[name].on('loaded', function (args) {
                             _this2.forceRender = true;
                         });
                     }
                 } else {
-                    this.textures[name] = new Texture(this.gl,name,options);
-                    this.textures[name].on('loaded', function(args) {
+                    this.textures[name] = new Texture(this.gl, name, options);
+                    this.textures[name].on('loaded', function (args) {
                         _this2.forceRender = true;
                     });
                 }
@@ -1867,7 +1867,7 @@
             value: function getBuffers(fragString) {
                 var buffers = {};
                 if (fragString) {
-                    fragString.replace(/(?:^\s*)((?:#if|#elif)(?:\s*)(defined\s*\(\s*BUFFER_)(\d+)(?:\s*\))|(?:#ifdef)(?:\s*BUFFER_)(\d+)(?:\s*))/gm, function() {
+                    fragString.replace(/(?:^\s*)((?:#if|#elif)(?:\s*)(defined\s*\(\s*BUFFER_)(\d+)(?:\s*\))|(?:#ifdef)(?:\s*BUFFER_)(\d+)(?:\s*))/gm, function () {
                         var i = arguments[3] || arguments[4];
                         buffers['u_buffer' + i] = {
                             fragment: '#define BUFFER_' + i + '\n' + fragString
@@ -1998,7 +1998,7 @@
             value: function resizeSwappableBuffers() {
                 var gl = this.gl;
                 var W = gl.canvas.width
-                  , H = gl.canvas.height;
+                    , H = gl.canvas.height;
                 gl.viewport(0, 0, W, H);
                 for (var key in this.buffers) {
                     var buffer = this.buffers[key];
@@ -2028,7 +2028,7 @@
         }
     }
 
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
         loadAllGlslCanvas();
     });
 
